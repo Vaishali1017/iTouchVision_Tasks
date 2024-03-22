@@ -12,12 +12,10 @@ import {
     Select,
     MenuItem
 } from '@mui/material';
+import {fetchAddressesAsync} from "../redux/addressSlice";
+import {useDispatch, useSelector} from "react-redux";
 
-const addresses = [
-    { id: 1, label: 'Address 1', value: '123 Main St' },
-    { id: 2, label: 'Address 2', value: '456 Elm St' },
-    { id: 3, label: 'Address 3', value: '789 Oak St' },
-];
+
 
 const initialValues = {
     postalCode: '',
@@ -25,12 +23,15 @@ const initialValues = {
 };
 
 const WasteCollection = () => {
+
+    const dispatch = useDispatch();
+    const { addresses, status } = useSelector((state) => state.addresses);
     const handleSubmit = (values) => {
         console.log(values);
     };
 
     return (
-        <Container maxWidth="md">
+        <Container >
 
         <Card>
             <CardHeader
@@ -47,12 +48,12 @@ const WasteCollection = () => {
                                     <Typography variant="subtitle1" gutterBottom>
                                         Enter Postal Code
                                     </Typography>
-                                    <Field
-                                        as={TextField}
+                                    <TextField
                                         name="postalCode"
-                                        label="Postal Code"
                                         variant="outlined"
                                         fullWidth
+                                        onChange={(e) => dispatch(fetchAddressesAsync(e.target.value))}
+
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
