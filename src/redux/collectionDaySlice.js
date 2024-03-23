@@ -1,6 +1,6 @@
 // addressSlice.js
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchCollectionDay } from '../services/api';
+import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
+import {fetchCollectionDay} from '../services/api';
 
 export const fetchCollectionDayAsync = createAsyncThunk(
     'collectionDay/fetchCollectionDay',

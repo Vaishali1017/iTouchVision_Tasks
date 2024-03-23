@@ -20,7 +20,7 @@ export const fetchAddresses = async (postalCode) => {
 
 export const fetchCollectionDay = async (selectedAddress) => {
     try {
-        const response = await axios.post('https://iweb.itouchvision.com/portal/itouchvision/kmbd_demo/collectionDay', null,{
+        const response = await axios.post('https://iweb.itouchvision.com/portal/itouchvision/kmbd_demo/collectionDay', null, {
             headers: {
                 'P_GUID': 'FF93E12280E5471FE053A000A8C08BEB',
                 'P_UPRN': selectedAddress,
@@ -28,7 +28,6 @@ export const fetchCollectionDay = async (selectedAddress) => {
                 'P_COUNCIL_ID': 260
             }
         });
-        console.log('Collection Day:', response.data);
         // Handle the response as needed
         return response.data; // Optionally return data
     } catch (error) {

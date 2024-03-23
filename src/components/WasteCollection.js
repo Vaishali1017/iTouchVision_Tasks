@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useFormik } from 'formik';
+import React, {useState} from 'react';
+import {useFormik} from 'formik';
 import {
     TextField,
     Card,
@@ -11,18 +11,17 @@ import {
     Select,
     MenuItem, Link, CardActions
 } from '@mui/material';
-import { fetchAddressesAsync } from "../redux/addressSlice";
-import { useDispatch, useSelector } from "react-redux";
+import {fetchAddressesAsync} from "../redux/addressSlice";
+import {useDispatch, useSelector} from "react-redux";
 import CollectionSchedule from "./CollectionSchedule";
-import { fetchCollectionDayAsync } from "../redux/collectionDaySlice"; // Import the fetchCollectionDayAsync action
+import {fetchCollectionDayAsync} from "../redux/collectionDaySlice"; // Import the fetchCollectionDayAsync action
 
 const WasteCollection = () => {
     const dispatch = useDispatch();
-    const { addresses } = useSelector((state) => state.addresses);
+    const {addresses} = useSelector((state) => state.addresses);
     const collectionDayData = useSelector((state) => state.collectionDay.collectionDay); // Access the collection day data from the store
 
     const [selectedAddress, setSelectedAddress] = useState(''); // State to store the selected address
-    console.log("3",collectionDayData)
     const handleAddressChange = (event) => {
         setSelectedAddress(event.target.value);
         // Trigger API call to fetch collection day data when address is selected
@@ -44,15 +43,16 @@ const WasteCollection = () => {
     };
 
     return (
-        <Container style={{ marginTop: "40px" }} maxWidth="md">
+        <Container style={{marginTop: "40px"}} maxWidth="md">
             <Card>
                 <CardHeader
                     title="Find Out Your Waste Collection Day"
-                    titleTypographyProps={{ variant: 'h4', color:"black" ,fontWeight:"bold",textAlign: 'left' }}
+                    titleTypographyProps={{variant: 'h4', color: "black", fontWeight: "bold", textAlign: 'left'}}
                 />
 
                 <CardContent>
-                    <Typography variant="subtitle1" color="black" fontWeight="bold" gutterBottom >Check when your waste will be collected</Typography> {/* Title */}
+                    <Typography variant="subtitle1" color="black" fontWeight="bold" gutterBottom>Check when your waste
+                        will be collected</Typography> {/* Title */}
 
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container spacing={2}>
@@ -98,12 +98,14 @@ const WasteCollection = () => {
 
                 </CardContent>
                 <CardActions>
-                    <Link component="button" variant="body2" onClick={clearForm} style={{margin:10}}>Clear Address and Start Again</Link> {/* Clear link */}
+                    <Link component="button" variant="body2" onClick={clearForm} style={{margin: 10}}>Clear Address and
+                        Start Again</Link> {/* Clear link */}
 
                 </CardActions>
 
             </Card>
-            {collectionDayData && <CollectionSchedule collectionDayData={collectionDayData.collectionDay} />} {/* Render CollectionSchedule if collection day data is available */}
+            {collectionDayData && <CollectionSchedule
+                collectionDayData={collectionDayData.collectionDay}/>} {/* Render CollectionSchedule if collection day data is available */}
 
         </Container>
 

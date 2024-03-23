@@ -1,5 +1,5 @@
 // store.js
-import { configureStore } from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import addressReducer from './addressSlice';
 import collectionDayReducer from './collectionDaySlice';
 
