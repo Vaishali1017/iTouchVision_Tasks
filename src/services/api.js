@@ -5,15 +5,35 @@ const API_URL = 'https://iweb.itouchvision.com/portal/itouchvision/kmbd_demo/add
 
 export const fetchAddresses = async (postalCode) => {
     try {
-        const response = await axios.get(API_URL, {
+        const response = await axios.post(API_URL, null, {
             headers: {
-                P_GUID: 'FF93E12280E5471FE053A000A8C08BEB',
-                P_POSTCODE: postalCode
+                'P_GUID': 'FF93E12280E5471FE053A000A8C08BEB',
+                'P_POSTCODE': postalCode
             }
         });
-        return response.data.addresses;
+        return response.data.ADDRESS;
     } catch (error) {
         console.error('Error fetching addresses:', error);
         throw error;
     }
 };
+
+export const fetchCollectionDay = async (selectedAddress) => {
+    try {
+        const response = await axios.post('https://iweb.itouchvision.com/portal/itouchvision/kmbd_demo/collectionDay', null,{
+            headers: {
+                'P_GUID': 'FF93E12280E5471FE053A000A8C08BEB',
+                'P_UPRN': selectedAddress,
+                'P_CLIENT_ID': 130,
+                'P_COUNCIL_ID': 260
+            }
+        });
+        console.log('Collection Day:', response.data);
+        // Handle the response as needed
+        return response.data; // Optionally return data
+    } catch (error) {
+        console.error('Error fetching collection day:', error);
+        throw error;
+    }
+};
+
